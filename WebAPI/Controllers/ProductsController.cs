@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Business.Abstract;
 using Entities.Concrete;
@@ -59,6 +60,18 @@ namespace WebAPI.Controllers
             {
                 
             return Ok(result);
+            }
+            return BadRequest(result.Message);
+        }
+
+        [HttpGet("getbycategory")]
+        public IActionResult GetByCategory(int categoryId)
+        {
+            var result = _productService.GetListByCategory(categoryId);
+            if (result.Success)
+            {
+
+                return Ok(result);
             }
             return BadRequest(result.Message);
         }
