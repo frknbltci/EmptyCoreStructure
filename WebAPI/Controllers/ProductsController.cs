@@ -83,7 +83,7 @@ namespace WebAPI.Controllers
             var result = _productService.Add(product);
             if (result.Success)
             {
-            return Ok(product);
+            return Ok(result.Message);
 
             }
             return BadRequest(result.Message);

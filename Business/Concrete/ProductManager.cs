@@ -36,7 +36,7 @@ namespace Business.Concrete
 
         // [Log]
         // Claim idddia etmek demektir admin veya  editor olma durumu ile alakaalı
-         [SecuredOperation("admin")]
+        // [SecuredOperation("admin")]
          [ValidationAspect(typeof(ProductValidator))]
          [CacheRemoveAspect("IProductService.Get")]
         public IResult Add(Product product)
@@ -46,12 +46,12 @@ namespace Business.Concrete
             if (result!=null)
             {
 
-                return new ErrorResult();
+                return new ErrorResult(result.Message);
                 // return result;
             }
 
             _productDal.Add(product);
-            return new SuccessResult();
+            return new SuccessResult(Messages.ProductAdded);
 
             
             //validation demek gelen parametrenin nasıl olacağı
